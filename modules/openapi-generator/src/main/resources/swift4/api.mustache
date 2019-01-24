@@ -154,7 +154,7 @@ open class {{classname}} {
             {{#hasFormParams}}
         let formParams: [String:Any?] = [
                 {{#formParams}}
-            {{> _param}}{{#hasMore}},{{/hasMore}}
+                    {{^isModel}}{{> _param}}{{/isModel}}{{#isModel}}{{#isBinary}}{{> _param}}{{/isBinary}}{{^isBinary}}"{{baseName}}": {{paramName}}{{^required}}?{{/required}}.encodeToJSON(){{/isBinary}}{{/isModel}}{{#hasMore}},{{/hasMore}}
                 {{/formParams}}
         ]
 

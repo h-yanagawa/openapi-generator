@@ -111,6 +111,16 @@ extension String: CodingKey {
 
 }
 
+extension Encodable {
+    func encodeToJSON() -> Any {
+        let encodeResult = CodableHelper.encode(self, prettyPrint: true)
+        if encodeResult.error != nil {
+            fatalError("Unable to process requestBody")
+        }
+        return encodeResult.data!
+    }
+}
+
 extension KeyedEncodingContainerProtocol {
 
     public mutating func encodeArray<T>(_ values: [T], forKey key: Self.Key) throws where T : Encodable {
